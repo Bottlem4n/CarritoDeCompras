@@ -1,0 +1,192 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    font-size: 62.5%;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header{
+    width: 100%;
+    height: 50px;
+}
+
+header nav{
+    display: flex;
+    justify-content: flex-end;
+    margin: 20px;
+}
+
+h1{
+    font-size: 4rem;
+    font-weight: bold;
+}
+
+hr{
+    margin: 2rem 0;
+    color: inherit;
+    background-color: currentColor;
+    opacity: .25;
+}
+
+
+.btn{
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    padding: .375rem;
+    font-size: 1.5rem;
+    border-radius: .5rem;
+    margin: 0 .5rem;
+}
+
+.btn-primary{
+    color: #fff;
+    background-color: #0577D3;
+    border-color: #1A95F9;
+}
+
+
+
+.btn-info{
+    color: #FDFFFC;
+    background-color: #13A995;
+    border-color: #13A995;
+    text-align: center;
+}
+
+.btn-danger{
+    color: #FEFFFE;
+    background-color: #E40826;
+    border-color: #E40826;
+    text-align: center;
+}
+
+.btn-dark{
+    color: #fff;
+    background-color: #212529;
+    border-color: #212529;
+}
+
+.btn-sm{
+    width: 25px;
+    height: 25px;
+    padding: 0;
+    font-size: 1.6rem;
+    border-radius: .2rem;
+    font-weight: 700;
+}
+
+.btn-md{
+    width: 100px;
+    height: 25px;
+    font-size: 1rem;
+    font-weight: 800;
+}
+
+.container{
+    width: 100%;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    margin-left: auto;
+    margin-right: auto
+}
+
+table{
+    display: table;
+    text-indent: initial;
+    border-spacing: 2px;
+    width: 100%;
+    margin-bottom: 1.5rem;
+    color: #212529;
+    vertical-align: top;
+    border-color: #dee2e6;
+    caption-side: bottom;
+    border-collapse: collapse;
+}
+
+table > thead {
+    vertical-align: bottom;
+    display: table-header-group;
+}
+
+tbody,td,tfoot,th,thead,tr{
+    border-bottom: 1px;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-color: #212529;
+    border-style: solid;
+    text-align: center;
+    padding: 1rem;
+}
+
+.col{
+    flex: 0;
+}
+
+
+.catalogo{
+    display: flex;
+}
+
+.col-md-4{
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+
+.mb-2{
+    margin: 5px;
+}
+
+.card{
+    position: relative;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, .125);
+    border-radius: .25rem;
+}
+
+.card-body{
+    flex: 1 1 auto;
+    padding: 1rem 1rem;
+}
+
+.card img{
+    width: au;
+    height: 150px;
+    object-fit: cover;
+}
+
+.card h4{
+    font-weight: 600;
+    font-size: 2rem;
+    margin-left: 10px;
+    margin-bottom: 5px;
+}
+
+.card p{
+    font-size: 1.2rem;
+    margin-left: 10px;
+    margin-bottom: 5px;
+}
+
+

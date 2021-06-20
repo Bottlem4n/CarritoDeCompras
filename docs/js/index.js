@@ -1,4 +1,5 @@
 const db = firebase.firestore();
+
 const catalogo = document.querySelector('#catalogo');
 const productos = document.querySelector('#productos');
 const footerTabla = document.querySelector('#footer-table');
@@ -160,4 +161,18 @@ const btnAccion = e =>{
 
 
     e.stopPropagation();
+}
+
+function iniciarSesion(){
+    
+    const autenticacion = firebase.auth();
+    const proveedor = new firebase.auth.GoogleAuthProvider();
+
+    proveedor.setCustomParameters({prompt: "select_account"});
+
+    autenticacion.onAuthStateChanged(
+        autenticacion.signInWithRedirect(proveedor)
+    );
+
+    
 }
