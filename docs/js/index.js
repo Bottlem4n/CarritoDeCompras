@@ -189,8 +189,10 @@ auth.onAuthStateChanged(user =>{
     if(user){
         templateCard.querySelector('button').removeAttribute("style");
         iniciarSesion.style.display = 'none';
+        cerrarSesion..removeAttribute("style");
     }
     else{
         templateCard.querySelector('button').style.display = 'none';cerrarSesion.style.display = 'none';
+        iniciarSesion.removeAttribute("style");
     }
 })
