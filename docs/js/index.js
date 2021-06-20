@@ -163,16 +163,17 @@ const btnAccion = e =>{
     e.stopPropagation();
 }
 
-function iniciarSesion(){
-    
-    const autenticacion = firebase.auth();
+const iniciarSesion = document.querySelector('#iniciarSesion')
+const auth = firebase.auth()
+
+iniciarSesion.addEventListener('click', (e) => {
     const proveedor = new firebase.auth.GoogleAuthProvider();
 
-    proveedor.setCustomParameters({prompt: "select_account"});
-
-    autenticacion.onAuthStateChanged(
-        autenticacion.signInWithRedirect(proveedor)
-    );
-
+    auth.signInWithPopup(proveedor).then(result => {
+        console.log(result);
+    }).catch(err => {
+        console.error(err);
+    })
     
-}
+
+})
