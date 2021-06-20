@@ -170,21 +170,19 @@ const auth = firebase.auth()
 iniciarSesion.addEventListener('click', async (e) => {
     const proveedor = new firebase.auth.GoogleAuthProvider();
 
-    await auth.signInWithPopup(proveedor).then(result => {
+    await auth.signInWithRedirect(proveedor).then(result => {
         console.log(result);
-        location.reload();
     }).catch(err => {
         console.error(err);
     })
 })
 
 cerrarSesion.addEventListener('click', async (e) =>{
-    await auth.signOut().then(result=>{
-        console.log(result);
-        location.reload();
-    }).catch(err => {
+    try{
+        await auth.signOut()
+    }catch(err) {
         console.error(err)
-    })
+    }
 })
 
 auth.onAuthStateChanged(user =>{
