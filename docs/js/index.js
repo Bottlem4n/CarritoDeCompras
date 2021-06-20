@@ -1,5 +1,7 @@
 const db = firebase.firestore();
 
+const avisoSesion = document.querySelector('#avisoSesion')
+const tabla = document.querySelector('#tabla')
 const catalogo = document.querySelector('#catalogo');
 const productos = document.querySelector('#productos');
 const footerTabla = document.querySelector('#footer-table');
@@ -17,6 +19,25 @@ document.addEventListener('DOMContentLoaded', () =>{
         pintarCarrito();
     }
 });
+
+
+const loginCheck = user =>{
+    if(user){
+        templateCard.querySelector('button').style.display = 'block';
+        cerrarSesion.style.display = 'block';
+        iniciarSesion.style.display = 'none'; 
+    }
+    else{
+        avisoSesion.innerHTML = '<h2 id="avisoChild" >Inicia Sesión para llenar tu carrito</h2>'
+        tabla.style.display = 'none';
+        cerrarSesion.style.display = 'none';
+        iniciarSesion.style.display = 'block'; 
+        templateCard.querySelector('button').style.display = 'none';
+        fetchData();
+        carrito = {};
+        pintarCarrito()
+    }
+}
 
 const onGetGafas = async (callback) => await db.collection('gafas').onSnapshot(callback);  
 
@@ -178,6 +199,8 @@ iniciarSesion.addEventListener('click', async (e) => {
 })
 
 cerrarSesion.addEventListener('click', async (e) =>{
+    
+
     try{
         await auth.signOut()
     }catch(err) {
@@ -187,12 +210,15 @@ cerrarSesion.addEventListener('click', async (e) =>{
 
 auth.onAuthStateChanged(user =>{
     if(user){
-        templateCard.querySelector('button').removeAttribute("style");
-        iniciarSesion.style.display = 'none';
-        cerrarSesion.removeAttribute("style");
+        loginCheck(user);
+        // templateCard.querySelector('button').removeAttribute("style");
+        // iniciarSesion.style.display = 'none';
+        // cerrarSesion.removeAttribute("style");
     }
     else{
-        templateCard.querySelector('button').style.display = 'none';cerrarSesion.style.display = 'none';
-        iniciarSesion.removeAttribute("style");
+        loginCheck(user);
+        // templateCard.querySelector('button').style.display = 'none';cerrarSesion.style.display = 'none';
+        // iniciarSesion.removeAttribute("style");
+
     }
 })
