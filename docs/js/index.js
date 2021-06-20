@@ -44,7 +44,7 @@ const pintarTarjeta = (querySnapshot) => {
 
         templateCard.querySelector("#marca").textContent = doc.data().marca;
 
-        //templateCard.querySelector('button').dataset.id =doc.id;
+        templateCard.querySelector('button').dataset.id =doc.id;
 
         const clone = templateCard.cloneNode(true);
         fragment.appendChild(clone);
@@ -164,23 +164,33 @@ const btnAccion = e =>{
 }
 
 const iniciarSesion = document.querySelector('#iniciarSesion')
+const cerrarSesion = document.querySelector('#cerrarSesion')
 const auth = firebase.auth()
 
-iniciarSesion.addEventListener('click', (e) => {
+iniciarSesion.addEventListener('click', async (e) => {
     const proveedor = new firebase.auth.GoogleAuthProvider();
 
-    auth.signInWithPopup(proveedor).then(result => {
+    await auth.signInWithPopup(proveedor).then(result => {
         console.log(result);
     }).catch(err => {
         console.error(err);
     })
 })
 
+cerrarSesion.addEventListener('click', async (e) =>{
+    await auth.signOut().then(result=>{
+        console.log(result);
+    }).catch(err => {
+        console.error(err)
+    })
+})
+
 auth.onAuthStateChanged(user =>{
     if(user){
         templateCard.querySelector('button').removeAttribute("style");
+        iniciarSesion.style.display = 'none';
     }
     else{
-        templateCard.querySelector('button').style.display = 'none';
+        templateCard.querySelector('button').style.display = 'none';cerrarSesion.style.display = 'none';
     }
 })
