@@ -172,6 +172,7 @@ iniciarSesion.addEventListener('click', async (e) => {
 
     await auth.signInWithPopup(proveedor).then(result => {
         console.log(result);
+        location.reload();
     }).catch(err => {
         console.error(err);
     })
@@ -180,6 +181,7 @@ iniciarSesion.addEventListener('click', async (e) => {
 cerrarSesion.addEventListener('click', async (e) =>{
     await auth.signOut().then(result=>{
         console.log(result);
+        location.reload();
     }).catch(err => {
         console.error(err)
     })
