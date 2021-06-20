@@ -178,7 +178,7 @@ iniciarSesion.addEventListener('click', (e) => {
 
 auth.onAuthStateChanged(user =>{
     if(user){
-        templateCard.querySelector('button').removeAttribute("disabled")
+        templateCard.querySelector('button').removeAttribute("style");
     }
     else{
         templateCard.querySelector('button').style.display = 'none';
