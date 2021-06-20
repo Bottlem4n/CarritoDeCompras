@@ -44,7 +44,7 @@ const pintarTarjeta = (querySnapshot) => {
 
         templateCard.querySelector("#marca").textContent = doc.data().marca;
 
-        templateCard.querySelector('button').dataset.id =doc.id;
+        //templateCard.querySelector('button').dataset.id =doc.id;
 
         const clone = templateCard.cloneNode(true);
         fragment.appendChild(clone);
@@ -174,6 +174,13 @@ iniciarSesion.addEventListener('click', (e) => {
     }).catch(err => {
         console.error(err);
     })
-    
+})
 
+auth.onAuthStateChanged(user =>{
+    if(user){
+        templateCard.querySelector('button').removeAttribute("disabled")
+    }
+    else{
+        templateCard.querySelector('button').style.display = 'none';
+    }
 })
