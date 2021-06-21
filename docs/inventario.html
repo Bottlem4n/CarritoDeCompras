@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario</title>
+    <link rel="icon" href="https://firebasestorage.googleapis.com/v0/b/carrito-de-compras-jb.appspot.com/o/assets%2Ficono.png?alt=media&token=bf680969-a0ba-4413-9b7c-1756a2ab4d88" sizes="32x32" type="image/png"/>
+
+
+    <link rel="stylesheet" href="css/index.css">
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
+
+    <script src="js/firebaseConexion.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="menu">
+                <li><a href="index.html" id="inventario">Catálogo</a></li>
+                <li><a href="pedidos.html" id="inventario">Pedidos</a></li>
+                <li><a href="inventario.html" id="inventario">Inventario</a></li>
+            </ul>
+            <button class ="btn btn-danger" id="cerrarSesion">Cerrar Sesión</button>
+        </nav>
+    </header>
+
+    <div class="modal-container">
+        <div class="modal">
+            <img src="https://firebasestorage.googleapis.com/v0/b/carrito-de-compras-jb.appspot.com/o/assets%2Fbloquear.png?alt=media&token=59b4e4a7-a368-44a1-a786-67430587f565" alt="Prohibido">
+            <div class="modal-textos">
+                <h2>No Tienes Permisos para esta página</h2>
+            </div>
+            <div class="modal-close">
+                <button  class="btn btn-danger" id="cerrarModal" >cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-container-agregar">
+        <div class="modal-agregar">
+            <div>
+                <h1>Agregar Producto</h1>
+            </div>
+            <form action="javascript:guardarProducto()" id="formularioAgregar">
+                <div>    
+                    <label for="subirImagenProducto">Imagen</label><br>
+                    <input type="file" id="subirImagenProducto" accept=".png, .jpg, .jpeg" required>
+                </div><br>
+                <div>    
+                    <label for="modeloProducto">Modelo</label><br>
+                    <input type="text" id="modeloProducto" required >
+                </div><br>
+                <div>
+                    <label for="marcaProducto">Marca</label><br>
+                    <input type="text" id="marcaProducto" required>
+                </div><br>
+                <div>
+                    <label for="precioProducto">Precio</label><br>
+                    <input type="number" id="precioProducto" min="0" required step=".01">
+                </div><br>
+                <div>
+                    <button type="reset" class="btn btn-danger btn-gde" id="cancelarGuardarProducto" onclick="javascript:cerrarFormularioAgregar()">Cancelar</button>
+                    <button type="submit" class="btn btn-success btn-gde" id="guardarProducto" >Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal-container-editar">
+        <div class="modal-editar">
+            <div>
+                <h1>Editar Producto</h1>
+            </div>
+            <form action="javascript:actualizarProducto()" id="formularioEditar">
+                <div>    
+                    <label for="claveProducto">Clave</label><br>
+                    <input type="text" id="claveProducto" disabled>
+                </div><br>
+                <div>    
+                    <label for="modeloProducto">Modelo</label><br>
+                    <input type="text" id="modeloProducto" required >
+                </div><br>
+                <div>
+                    <label for="marcaProducto">Marca</label><br>
+                    <input type="text" id="marcaProducto" required>
+                </div><br>
+                <div>
+                    <label for="precioProducto">Precio</label><br>
+                    <input type="number" id="precioProducto" min="0" required step=".01">
+                </div><br>
+                <div>
+                    <button type="reset" class="btn btn-danger btn-gde" id="cancelarEditarProducto" onclick="javascript:cerrarFormularioActualizar()">Cancelar</button>
+                    <button type="submit" class="btn btn-success btn-gde" id="actualizarProducto" >Actualizar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <main>
+        <div class="container">
+            <h1>Inventario</h1>
+            <hr>
+
+            <table class="table" id="tablaInventario">
+                <thead>
+                    <tr>
+                        <th class="col">Clave</th>
+                        <th class="col">Imagen</th>
+                        <th class="col">Modelo</th>
+                        <th class="col">Marca</th>
+                        <th class="col">Precio</th>
+                        <th class="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="listaInventario">
+                    <tr>
+                
+                        <td class="celda">Clave</td>
+                        <td class="celda"><img class="imagen-producto" src="https://firebasestorage.googleapis.com/v0/b/carrito-de-compras-jb.appspot.com/o/productos%2FVFaxxOxw49wY8ixcjQ9Y.jpg?alt=media&token=8b6b4026-c4f2-4122-a5c7-19f6511107c8" alt=""></td>
+                        <td class="celda" >CARBON BLACK DARK ONE LS - LIFTR01</td>
+                        <td class="celda">Hawkers</td>
+                        <td class="celda">$<span>759.5</span></td>
+                        <td class="celda">
+                            <button class="btn btn-info btn-md" id="editarProducto">Editar</button>
+                            <button class="btn btn-danger btn-md" id="eliminarProducto">Eliminar</button>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr id="footer-table">
+                        <th scope="row" colspan="6">
+                            <button class="btn btn-info" id="agregarNuevo">Agregar Nuevo</button>
+                        </th>
+                    </tr>
+                </tfoot>
+            </table>
+
+        </div>
+
+        <template id="template-inventario">
+            <tr>
+                
+                <td class="celda" id="clave">Clave</td>
+                <td class="celda"><img class="imagen-producto" id="imagen" src="" alt=""></td>
+                <td class="celda" id="modelo">CARBON BLACK DARK ONE LS - LIFTR01</td>
+                <td class="celda" id="marca">Hawkers</td>
+                <td class="celda">$<span id="precio">759.5</span></td>
+                <td class="celda">
+                    <button class="btn btn-info btn-md" id="editarProducto">Editar</button>
+                    <button class="btn btn-danger btn-md" id="eliminarProducto">Eliminar</button>
+                </td>
+            </tr>
+        </template>
+    </main>
+    <script src="js/controlInventario.js"></script>
+</body>
+</html>

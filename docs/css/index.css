@@ -15,6 +15,15 @@ body{
     font-family: Arial, Helvetica, sans-serif;
 }
 
+a{
+    text-decoration: none;
+    cursor: pointer;
+}
+
+a:hover{
+    text-decoration: underline;
+}
+
 header{
     width: 100%;
     height: 50px;
@@ -24,6 +33,24 @@ header nav{
     display: flex;
     justify-content: flex-end;
     margin: 20px;
+}
+
+header nav .menu{
+    width: 250px;
+    height: auto;
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    align-items: center;
+}
+
+nav .menu a{
+    background-color: #434343;
+    border-radius: 5px;
+    margin-right: 10px;
+    color: #E9E5E6;
+    font-size: 1.5rem;
+    padding: 7.5px;
 }
 
 h1{
@@ -80,6 +107,12 @@ hr{
     border-color: #212529;
 }
 
+.btn-success{
+    color: #fff;
+    background-color: #36B927;
+    border-color: #36B927;
+}
+
 .btn-sm{
     width: 25px;
     height: 25px;
@@ -93,6 +126,13 @@ hr{
     width: 100px;
     height: 25px;
     font-size: 1rem;
+    font-weight: 800;
+}
+
+.btn-gde{
+    width: 150px;
+    height: 50px;
+    font-size: 2rem;
     font-weight: 800;
 }
 
@@ -171,7 +211,7 @@ tbody,td,tfoot,th,thead,tr{
 }
 
 .card img{
-    width: au;
+    width: auto;
     height: 150px;
     object-fit: cover;
 }
@@ -190,3 +230,149 @@ tbody,td,tfoot,th,thead,tr{
 }
 
 
+.modal-container{
+    opacity: 0;
+    visibility: hidden;
+    position: fixed;
+    z-index: 1000;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal{
+    width: 40%;
+    height: 40%;
+    background: #FEF9EF;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    position: relative;
+    border-radius: 5%;
+
+}
+
+.modal > img {
+    height: 50%;
+    margin: 0 auto;
+}
+
+
+.imagen-producto{
+    width: auto;
+    height: 100px;
+    object-fit: cover;
+}
+
+.celda{
+    height: auto;
+    width: 200px;
+}
+
+.celda button{
+    margin: 10px;
+}
+
+
+.modal-container-agregar{
+    opacity: 0;
+    visibility: hidden;
+    position: fixed;
+    z-index: 1000;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-agregar{
+    width: 50%;
+    height: 70%;
+    background: #FEF9EF;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    position: relative;
+    border-radius: 5%;
+
+}
+
+
+.modal-agregar label{
+    font-size: 3rem;
+    font-weight: 600;
+}
+
+.modal-agregar input:not(input[type="file"]){
+    width: 60%;
+    font-size: 2rem;
+    border: 1spx inset #21252911;
+    border-radius: 10px;
+}
+
+.modal-agregar input[type="number"]{
+    text-align: right;
+}
+
+.modal-container-editar{
+    opacity: 0;
+    visibility: hidden;
+    position: fixed;
+    z-index: 1000;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-editar{
+    width: 50%;
+    height: 70%;
+    background: #FEF9EF;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    position: relative;
+    border-radius: 5%;
+
+}
+
+.modal-editar label{
+    font-size: 3rem;
+    font-weight: 600;
+}
+
+.modal-editar input {
+    width: 60%;
+    font-size: 2rem;
+    border: 1spx inset #21252911;
+    border-radius: 10px;
+}
+
+#claveProducto{
+    width: 60%;
+    font-size: 2rem;
+    border: 1spx inset #21252911;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.modal-editar input[type="number"]{
+    text-align: right;
+}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedidos</title>
+    <link rel="icon" href="https://firebasestorage.googleapis.com/v0/b/carrito-de-compras-jb.appspot.com/o/assets%2Ficono.png?alt=media&token=bf680969-a0ba-4413-9b7c-1756a2ab4d88" sizes="32x32" type="image/png"/>
+
+    
+    <link rel="stylesheet" href="css/index.css">
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
+
+    <script src="js/firebaseConexion.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="menu">
+                <li><a href="index.html" id="inventario">Catálogo</a></li>
+                <li><a href="pedidos.html" id="inventario">Pedidos</a></li>
+                <li><a href="inventario.html" id="inventario">Inventario</a></li>
+            </ul>
+            <button class ="btn btn-danger" id="cerrarSesion">Cerrar Sesión</button>
+        </nav>
+    </header>
+
+    <div class="modal-container">
+        <div class="modal">
+            <img src="https://firebasestorage.googleapis.com/v0/b/carrito-de-compras-jb.appspot.com/o/assets%2Fbloquear.png?alt=media&token=59b4e4a7-a368-44a1-a786-67430587f565" alt="Prohibido">
+            <div class="modal-textos">
+                <h2>No Tienes Permisos para esta página</h2>
+            </div>
+            <div class="modal-close">
+                <button  class="btn btn-danger" id="cerrarModal" >cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <div class="container">
+            <h1>Pedidos</h1>
+            <hr>
+
+            <table class="table" id="tablaPedidos">
+                <thead>
+                    <tr>
+                        <th class="col">Clave</th>
+                        <th class="col">Cliente</th>
+                        <th class="col">Detalles</th>
+                        <th class="col">Total a Pagar</th>
+                        <th class="col">Estado</th>
+                        <th class="col">Acciones</th>
+                        
+                    </tr>
+                </thead>
+                <tbody id="listaPedidos">
+                    <tr>
+                        <td class="celda">Clave</td>
+                        <td class="celda">Cliente</td>
+                        <td class="celda" >Detalle</td>
+                        <td class="celda">$<span>759.5</span></td>
+                        <td class="celda" >Estado</td>
+                        <td class="celda">
+                            <button class="btn btn-info btn-md" id="entregarPedido">Entregar</button>
+                            <button class="btn btn-danger btn-md" id="cancelarPedido">Cancelar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <template id="template-pedido">
+            <tr>
+                <td class="celda" id="clave">Clave</td>
+                <td class="celda" id="cliente">Cliente</td>
+                <td class="celda" id="detalles">Detalle</td>
+                <td class="celda">$<span id="total">759.5</span></td>
+                <td class="celda" id="estado">Estado</td>
+                <td class="celda">
+                    <button class="btn btn-info btn-md" id="entregarPedido">Entregar</button>
+                    <button class="btn btn-danger btn-md" id="cancelarPedido">Cancelar</button>
+                </td>
+            </tr>
+        </template>
+
+        
+    </main>
+    <script src="js/controlPedidos.js"></script>
+</body>
+</html>
